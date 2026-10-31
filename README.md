@@ -39,4 +39,6 @@
 | 站点定制代码（`assets/`、`layouts/` 等） | GPL-3.0 | 基于主题修改/扩展，随主题同协议发布 |
 | [Stack 主题](https://github.com/CaiJimmy/hugo-theme-stack) | [GPL-3.0-only](https://github.com/CaiJimmy/hugo-theme-stack/blob/master/LICENSE) | 以 git submodule 引用，保留上游 LICENSE 与页脚署名 |
 
+对应文件：根目录 [`LICENSE`](LICENSE) 是 GPL-3.0 全文，仅覆盖站点代码；[`content/LICENSE`](content/LICENSE) 是面向文章与图片的 CC BY-NC-SA 4.0 授权声明。
+
 > GPL 只约束**代码**的传播，不会"传染"到你写的文章和图片上——内容是你的原创作品，版权完全属于你，采用 CC 协议即可，无需与 GPL 兼容。
