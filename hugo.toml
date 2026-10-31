@@ -1,7 +1,7 @@
 # ── 站点基础信息 ─────────────────────────────────────────────
-# 实际部署地址：https://tsimin-organic.github.io/Senychistory/
+# 自定义域名：https://senychistory.fun/（2026 年购入，有效期一年）
 # （GitHub Actions 部署时会用 Pages 给出的地址自动覆盖，这里主要给本地预览用）
-baseURL = 'https://tsimin-organic.github.io/Senychistory/'
+baseURL = 'https://senychistory.fun/'
 locale = 'zh-cn'
 defaultContentLanguage = 'zh-cn'
 hasCJKLanguage = true
