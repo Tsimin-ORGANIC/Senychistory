@@ -2,7 +2,7 @@
 title: "负一-行香子·代题见山斋"
 date: "2026-10-31T20:52:03+08:00"
 description: "岁在丙午，秋深。客属某以筑小斋，曰“见山”。尚无作以陈，代题《行香子》一首，仅作引玉"
-draft: true
+draft: false
 tags: []
 categories: []
 ---
