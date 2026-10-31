@@ -41,7 +41,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build
-        run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        # 用 hugo.toml 里的 baseURL（https://senychistory.fun/）。
+        # 不用 pages.base_url：在 Enforce HTTPS 开启前它返回的是 http://，
+        # 会把页面里所有资源写成 http，https 访问时被浏览器当作混合内容拦截。
+        run: hugo --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
