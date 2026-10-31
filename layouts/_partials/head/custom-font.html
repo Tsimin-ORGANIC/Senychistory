@@ -1,0 +1,9 @@
+{{/* 覆盖主题的同名 partial，把 Google Fonts 换成国内镜像。
+     放在主项目而不是改 themes/stack 子模块：GitHub Actions 拉取的是
+     主题的 pinned commit，子模块里的本地改动不会带上去，只有这样
+     本地预览和线上构建才完全一致。
+     Lato 只服务拉丁字符；中文由 static/fonts 下的本地子集字体承担。 */}}
+<link rel="preconnect" href="https://fonts.loli.net">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.loli.net/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Lato:wght@300;400;700&display=swap">

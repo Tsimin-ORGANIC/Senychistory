@@ -1,0 +1,295 @@
+/*
+ * 自定义动效 + 视觉风格（宣纸底 · 黛青字 · 朱砂/竹青点缀）
+ * 此文件会被主题自动 import，无需改动模板
+ */
+
+/* ── 字体：公文仿宋（标题）与等线（正文）──
+ * 字体已子集化（GB2312 常用字），放在 static/fonts/
+ * CSS 产物在 /scss/ 下，用 ../fonts/ 相对路径可同时兼容本地与 GitHub Pages 子路径 */
+@font-face {
+    font-family: "FangSong GB";
+    src: url("../fonts/FangSongGB2312.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "DengXian Web";
+    src: url("../fonts/DengXian-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "DengXian Web";
+    src: url("../fonts/DengXian-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+}
+
+/* ── 配色与字体变量（覆盖主题默认值）── */
+:root {
+    /* 宣纸底色，卡片略白一档做层次 */
+    --body-background: #f8f6f0;
+    --card-background: #fdfcf8;
+
+    /* 黛青（深蓝灰）代替纯黑 */
+    --body-text-color: #3c4653;
+    --card-text-color-main: #333c48;
+    --card-text-color-secondary: #5f6b7a;
+    --card-text-color-tertiary: #8a94a3;
+    --card-separator-color: rgba(60, 70, 83, 0.12);
+
+    /* 朱砂红做主点缀色（链接、标签、图标，如画上印章） */
+    --accent-color: #c03b33;
+    --accent-color-darker: #992f28;
+
+    /* 正文：等线；标题在下方单独指定为仿宋 */
+    --base-font-family: "DengXian Web", "等线", "DengXian", "Microsoft YaHei",
+        "PingFang SC", var(--sys-font-family), sans-serif;
+
+    /* 暗色模式：暖炭底 + 提亮的朱砂/竹青 */
+    &[data-scheme="dark"] {
+        --body-background: #2b2925;
+        --card-background: #35322c;
+        --body-text-color: rgba(240, 238, 230, 0.78);
+        --card-text-color-main: #ece9e1;
+        --card-text-color-secondary: #b8b3a6;
+        --card-text-color-tertiary: #8f8a7d;
+        --card-separator-color: rgba(240, 238, 230, 0.12);
+        --accent-color: #e08373;
+        --accent-color-darker: #c96a5b;
+    }
+}
+
+/* 标题字体：公文仿宋加粗 */
+h1, h2, h3, h4, h5, h6,
+.site-name,
+.article-title,
+.section-title {
+    font-family: "FangSong GB", "仿宋_GB2312", "仿宋", "FangSong", "STFangsong",
+        var(--base-font-family);
+    font-weight: 700;
+}
+
+/* ── 竹青做次点缀：标签悬浮时盖一方「竹青印」── */
+.tag-cloud a,
+.article-tags a,
+.article-category a {
+    &:hover {
+        background-color: #4a6b5a;
+        border-color: #4a6b5a;
+        color: #f8f6f0;
+    }
+}
+
+[data-scheme="dark"] {
+    .tag-cloud a,
+    .article-tags a,
+    .article-category a {
+        &:hover {
+            color: #f8f6f0;
+        }
+    }
+}
+
+/* ── 首页文章卡片：悬浮上浮 + 阴影加深，按下轻微收缩 ── */
+.article-list article {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(60, 70, 83, 0.16);
+    }
+
+    &:active {
+        transform: translateY(-1px) scale(0.985);
+        transition-duration: 0.1s;
+    }
+
+    // 卡片封面图：悬浮时缓慢放大
+    .article-image {
+        overflow: hidden;
+
+        img {
+            transition: transform 0.5s ease;
+        }
+    }
+
+    &:hover .article-image img {
+        transform: scale(1.06);
+    }
+}
+
+/* 文章页主体：不加位移（整页浮动会晕），只做阴影呼吸 */
+.main-article {
+    transition: box-shadow 0.3s ease;
+}
+
+/* ── 侧栏站名与副标题 ──
+ * 站名「见山斋」放大醒目，副标题缩小 */
+.sidebar header .site-name {
+    font-size: 2.6rem !important;
+    letter-spacing: 0.12em;
+}
+
+.sidebar header .site-description {
+    font-size: 1.15rem !important;
+    letter-spacing: 0.05em;
+}
+
+/* ── 侧栏菜单：悬浮右滑 + 变色 ── */
+.left-sidebar .menu li a {
+    transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    border-radius: 6px;
+
+    &:hover {
+        transform: translateX(4px);
+        color: var(--accent-color);
+    }
+
+    &:active {
+        transform: translateX(2px) scale(0.97);
+    }
+}
+
+/* 侧栏站名悬浮变色 */
+.left-sidebar .site-name {
+    transition: color 0.25s ease, letter-spacing 0.25s ease;
+
+    &:hover {
+        color: var(--accent-color);
+    }
+}
+
+/* ── 标签 / 分类：悬浮弹起 + 投影 ── */
+.tag-cloud a,
+.article-tags a,
+.article-category a {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(60, 70, 83, 0.16);
+    }
+
+    &:active {
+        transform: translateY(-1px) scale(0.95);
+        transition-duration: 0.1s;
+    }
+}
+
+/* ── 正文图片：悬浮微放大（带圆角裁切）── */
+.article-content figure {
+    overflow: hidden;
+    border-radius: var(--card-border-radius);
+
+    img {
+        transition: transform 0.45s ease, filter 0.45s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.02);
+        filter: brightness(1.03);
+    }
+}
+
+/* ── 正文链接：颜色过渡 + 淡朱砂背景高亮 ── */
+.article-content a {
+    transition: color 0.2s ease, background-color 0.2s ease;
+    border-radius: 3px;
+
+    &:hover {
+        color: var(--accent-color-darker);
+        background-color: rgba(192, 59, 51, 0.08);
+    }
+}
+
+/* ── 按钮类（搜索、代码复制、分页、明暗切换）：按下回弹 ── */
+button,
+.pagination a {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: scale(0.93);
+        transition-duration: 0.08s;
+    }
+}
+
+/* ── 目录：未选中项用墨色，仅当前章节用朱砂红 ──
+ * 主题给全站 a 链接统一上 accent 色，这里把目录摘出来 */
+#TableOfContents a,
+.widget--toc a,
+.article-toc a {
+    color: var(--card-text-color-main);
+    transition: color 0.2s ease, padding-left 0.2s ease;
+
+    &:hover {
+        color: var(--accent-color);
+    }
+}
+
+#TableOfContents li.active-class > a,
+.widget--toc li.active-class > a,
+.article-toc li.active-class > a {
+    color: var(--accent-color);
+}
+
+/* ── JS 注入的元素：卡片水波纹 ── */
+.ink-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--accent-color);
+    opacity: 0.14;
+    transform: scale(0);
+    animation: ink-ripple 0.55s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes ink-ripple {
+    to {
+        transform: scale(2.8);
+        opacity: 0;
+    }
+}
+
+/* JS 注入的「颜料点」飞溅 */
+.ink-dot {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* 尊重系统「减少动态效果」设置 */
+@media (prefers-reduced-motion: reduce) {
+    .article-list article,
+    .main-article,
+    .left-sidebar .menu li a,
+    .left-sidebar .site-name,
+    .tag-cloud a,
+    .article-tags a,
+    .article-category a,
+    .article-content a,
+    .article-content figure img,
+    button,
+    .pagination a {
+        transition: none !important;
+    }
+
+    .article-list article:hover,
+    .tag-cloud a:hover,
+    .article-tags a:hover,
+    .article-category a:hover,
+    button:hover {
+        transform: none;
+    }
+}

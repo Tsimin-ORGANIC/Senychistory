@@ -1,0 +1,118 @@
+# ── 站点基础信息 ─────────────────────────────────────────────
+# 实际部署地址：https://tsimin-organic.github.io/Senychistory/
+# （GitHub Actions 部署时会用 Pages 给出的地址自动覆盖，这里主要给本地预览用）
+baseURL = 'https://tsimin-organic.github.io/Senychistory/'
+locale = 'zh-cn'
+defaultContentLanguage = 'zh-cn'
+hasCJKLanguage = true
+title = '见山斋'   # 站点名，可以随意改
+theme = 'stack'
+
+# 部署到 GitHub Pages 时必须保留，否则构建产物会在仓库里
+canonifyURLs = true
+enableRobotsTXT = true
+
+# 网站描述（会出现在搜索引擎和社交分享卡片里）
+description = '关于艺术和历史、绘画与文物的随笔与札记'
+
+# 列表页默认取 content/posts/ 下的文章
+mainSections = ['posts']
+
+# 版权信息，显示在页脚
+copyright = 'Senyc · 本站文章采用 CC BY-NC-SA 4.0 协议'
+
+# 分页（新版 Hugo 用 [pagination] 代替旧的 paginate）
+[pagination]
+  pagerSize = 10
+
+# 文章用短链接 /p/:slug/；归档/搜索/关于三个页面的地址在各页面 front matter 里指定
+[permalinks]
+  posts = '/p/:slugorcontentbasename/'
+
+# ── 菜单（右上角导航）────────────────────────────────────────
+[menu]
+  [[menu.main]]
+    identifier = 'home'
+    name = '首页'
+    url = '/'
+    weight = 1
+
+  [[menu.main]]
+    identifier = 'archives'
+    name = '归档'
+    url = '/archives/'
+    weight = 2
+
+  [[menu.main]]
+    identifier = 'about'
+    name = '关于'
+    url = '/about/'
+    weight = 3
+
+  [[menu.main]]
+    identifier = 'search'
+    name = '搜索'
+    url = '/search/'
+    weight = 4
+
+# ── Stack 主题参数 ───────────────────────────────────────────
+[params]
+  mainSections = ['posts']
+  rssFullContent = true
+
+  # 侧栏
+  [params.sidebar]
+    compact = false
+    # 头像：放一张图到 static/img/avatar.jpg 后填 '/img/avatar.jpg'
+    avatar = ''
+    # 头像旁边的小表情
+    emoji = '🎨'
+    # 侧栏名字下面的一行小字
+    subtitle = '艺术·历史 · 随笔 · 看展笔记'
+
+  # 文章页
+  [params.article]
+    toc = true            # 目录
+    readingTime = true    # 阅读时长
+    headingAnchor = true  # 标题锚点，方便引用某一段
+
+    [params.article.list]
+      showTags = true     # 列表页直接显示标签
+
+    # 文末版权声明（艺术类内容建议保留，别人转载需署名）
+    [params.article.license]
+      enabled = true
+      default = '署名-非商业性使用-相同方式共享 4.0 (CC BY-NC-SA 4.0)'
+
+  # 首页侧边小工具
+  [params.widgets]
+    homepage = [
+      { type = 'search' },
+      { type = 'archives', params = { limit = 5 } },
+      { type = 'tag-cloud', params = { limit = 10 } },
+    ]
+    page = [{ type = 'toc' }]
+
+  # 明暗色切换（default 改成 'auto' 可跟随系统）
+  [params.colorScheme]
+    toggle = true
+    default = 'light'
+
+  # 暂时不开评论系统；想开的话推荐 giscus（基于 GitHub Discussions）
+  [params.comments]
+    enabled = false
+
+  # 页脚
+  [params.footer]
+    since = 2026
+
+  # 日期显示格式
+  [params.dateFormat]
+    published = '2006年01月02日'
+    lastUpdated = '2006年01月02日'
+
+  # 图片压缩（列表缩略图、正文图自动生成多档宽度）
+  [params.imageProcessing.content]
+    enabled = true
+  [params.imageProcessing.thumbnail]
+    enabled = true
