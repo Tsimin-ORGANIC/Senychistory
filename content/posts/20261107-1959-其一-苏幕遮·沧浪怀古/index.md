@@ -2,7 +2,7 @@
 title: "其一-苏幕遮·沧浪怀古"
 date: "2026-11-07T19:59:02+08:00"
 description: "游苏州，适逢飓风连雨，与友共游沧浪亭。观石刻记文，犹感苏子美归隐意。"
-draft: true
+draft: false
 tags: []
 categories: ["诗词"]
 ---
